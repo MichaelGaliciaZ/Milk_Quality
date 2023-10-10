@@ -43,7 +43,7 @@ def plot_continuos_histogram_matrix(data,num_cols=2):
         height=350 * num_rows,
         width=1000,
         margin=dict(t=100, l=80),
-        template= 'plotly_white'
+        template= 'plotly_dark'
     )
     return fig
 
