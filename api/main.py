@@ -1,5 +1,15 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 import joblib
+
+class ModelData(BaseModel):
+    pH:float
+    Temp:float
+    Taste:float
+    Odor:float
+    Fat:float
+    Turbidity:float
+    Colour:float
 
 app=FastAPI(
     title="Quality Milk Prediction API",
@@ -8,10 +18,10 @@ app=FastAPI(
 )
 model=joblib.load('../models/gnbayes.joblib')
 
-@app.get('/')
-def predict(pH,Temp,Taste,Odor,Fat,Turbidity,Colour):
+@app.post('/')
+def predict(data:ModelData):
     """
     Milk Quality Predictions
     """
-    print(pH,Temp,Taste,Odor,Fat,Turbidity,Colour)
-    return {'result':pH+Temp}
+    print(data)
+    return {'result':data}
