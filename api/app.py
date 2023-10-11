@@ -1,26 +1,32 @@
-from fastapi import FastAPI
 import uvicorn
+from fastapi.encoders import jsonable_encoder
+from fastapi import FastAPI
+from model import MilkModel, milk_features
 
 app = FastAPI()
+model = MilkModel()
 
-
-# Declare the first route- returns a simple JSON object on the index page
 @app.get("/")
 def index():
-    '''
-    This is a first docstring
-    '''
     return {"message": "Hello,stranger!"}
 
+@app.post("/predict")
+def predict_quality(milk: milk_features):
+    data = milk.model_dump()
+    print(data)
+    print(jsonable_encoder(data))
+    prediction, probability = model.predict_quality(pH=data['pH'], 
+                                                    Temp=data['Temp'],
+                                                    Taste=data['Taste'],
+                                                    Odor=data['Odor'],
+                                                    Fat=data['Fat'],
+                                                    Turbidity=data['Turbidity'],
+                                                    Colour=data['Colour']
+    )
+    return {
+        'prediction':prediction,
+        'probability':probability
+    }
 
-# Declare the seconde route- returns a simple JSON object containing a personalized message
-@app.get("/{name}")
-def get_name(name: str):
-    '''
-    This is a second docstring
-    '''
-    return {"message": f"Hello, {name}"}
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, port=8085)
+if __name__=='__main__':
+    uvicorn.run(app,host='127.0.0.1',port=8085)
