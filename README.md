@@ -25,11 +25,14 @@ Inspiration: To leverage the benefits of machine learning in the dairy industry.
 ## EDA
 The available data contain a lot of duplicated samples, after remove it, data decreased significantly:
 
+<div align="center">
+  
 ![Target](reports/target_proportion.png)
+</div>
 
 All features are numeric:
 
-![Features](reports\histogram_matrix.png)
+![Features](reports/histogram_matrix.png)
 
 ## Visualize Dimensional Reduction
 As an exercise, a PCA and t-SNE was developed showing the next results:
@@ -53,13 +56,13 @@ Accuracy    | 0.92          |0.76           |0.84          |0.68|
 ## Test
 Matriz confusion shows:
 
-![](reports\plotly_cm.png)
+![](reports/plotly_cm.png)
 
 On the other hand classification report is shown:
 
 <div align="center">
 
-![](reports\cr_test.png)
+![](reports/cr_test.png)
 
 </div>
 
