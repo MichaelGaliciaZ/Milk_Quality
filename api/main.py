@@ -15,9 +15,6 @@ def predict(data: PredictionRequest):
     Milk Quality Predictions
     """
     input_data = data.model_dump()
-    print(data)
-    print(input_data)
-    print("pH equal to:", input_data["pH"] + 5)
     pred, proba = model.predict_quality(
         input_data["pH"],
         input_data["Temp"],
@@ -27,8 +24,4 @@ def predict(data: PredictionRequest):
         input_data["Turbidity"],
         input_data["Colour"],
     )
-    print(pred, proba)
-    prediction = int(pred)
-    print(prediction)
-
     return PredictionResponse(milk_quality=pred, milk_quality_prob=proba)
