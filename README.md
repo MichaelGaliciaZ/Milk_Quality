@@ -22,6 +22,14 @@ If Taste, Odor, Fat, and Turbidity are satisfied with optimal conditions then th
 Temperature and ph are given their actual values in the dataset.
 
 Inspiration: To leverage the benefits of machine learning in the dairy industry.
+
+Project covers:
+- Data Cleaning and Handle Duplicated
+- EDA
+- Dimensional Reduction Analysis
+- Modelling
+- Deployment
+
 ## EDA
 The available data contain a lot of duplicated samples, after remove it, data decreased significantly:
 
